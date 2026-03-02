@@ -12,5 +12,4 @@ jobs:
         run: make
 
       - name: Run (with dummy input)
-        # Создаем пустой ввод, чтобы scanf не завис
         run: echo "Name Fac 101 01 01 2023" | ./main
