@@ -1,3 +1,2 @@
-make
-gcc -c main.c
-gcc -o main main.o
+main: main.c person.c date.c
+    gcc main.c person.c date.c -o main
