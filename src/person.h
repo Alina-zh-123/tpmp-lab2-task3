@@ -1,8 +1,8 @@
 #include "date.h"
 
 struct Person {
-	string name;
- 	string fac;
-	int group;
-	Date date;
-}
+    char name[100];
+    char fac[100];
+    int group;
+    Date date;
+};
