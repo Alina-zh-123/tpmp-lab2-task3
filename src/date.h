@@ -1,7 +1,12 @@
-struct Date {
-	int day;
-	int month;
-	int year;
+#ifndef DATE_H
+#define DATE_H
 
-	int compare_dates(const Date *a, const Date *b);
-};
+typedef struct {
+    int day;
+    int month;
+    int year;
+} Date;
+
+int compare_dates(const Date *a, const Date *b);
+
+#endif
