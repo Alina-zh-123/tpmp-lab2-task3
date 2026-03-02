@@ -1,5 +1,4 @@
 name: C Build
-
 on: [push, pull_request]
 
 jobs:
@@ -12,5 +11,6 @@ jobs:
       - name: Build with Make
         run: make
 
-      - name: Run the program (optional)
-        run: ./main
+      - name: Run (with dummy input)
+        # Создаем пустой ввод, чтобы scanf не завис
+        run: echo "Name Fac 101 01 01 2023" | ./main
