@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "date.h"
-#include "person.h"
+#include "person.h" 
 
 int cmp_students(const void *a, const void *b) {
     const Person *x = (const Person*)a;
@@ -13,24 +12,26 @@ int cmp_students(const void *a, const void *b) {
     
     if (x->group != y->group) return x->group - y->group;
     
-    int d_cmp = compare_dates(&x->date, &y->date);
-    if (d_cmp != 0) return d_cmp;
-    
-    return strcmp(x->name, y->name);
+    return compare_dates(&x->date, &y->date);
 }
 
 int main() {
     Person vuz[10];
+    int count = 0;
     
+    printf("Enter data (Name Faculty Group Day Month Year):\n");
     for (int i = 0; i < 10; i++) {
-        if (scanf("%s %s %d %d %d %d", 
+        if (scanf("%99s %99s %d %d %d %d", 
               vuz[i].name, vuz[i].fac, &vuz[i].group, 
               &vuz[i].date.day, &vuz[i].date.month, &vuz[i].date.year) != 6) break;
+        count++;
     }
     
-    qsort(vuz, 10, sizeof(Person), cmp_students);
+    if (count > 0) {
+        qsort(vuz, count, sizeof(Person), cmp_students);
+    }
     
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < count; i++) {
         printf("%s\t %d\t %02d.%02d.%d\t %s\n", 
                vuz[i].fac, vuz[i].group, vuz[i].date.day,
                vuz[i].date.month, vuz[i].date.year, vuz[i].name);
