@@ -1,13 +1,14 @@
-all: main
+CC = gcc
+CFLAGS = -I./src
 
-main: main.o date.o
-	gcc -o main main.o date.o
+main: src/main.o src/date.o
+	$(CC) -o main src/main.o src/date.o
 
-main.o: main.c
-	gcc -c main.c
+src/main.o: src/main.c
+	$(CC) $(CFLAGS) -c src/main.c -o src/main.o
 
-date.o: date.c
-	gcc -c date.c
+src/date.o: src/date.c
+	$(CC) $(CFLAGS) -c src/date.c -o src/date.o
 
 clean:
-	rm -f *.o main
+	rm -f src/*.o main
