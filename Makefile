@@ -1,14 +1,12 @@
-
 CFLAGS = -I./src
 
-main: src/main.o src/date.o
-	gcc -o main src/main.o src/date.o
+main: obj/main.o obj/date.o
+    gcc -o main obj/main.o obj/date.o
 
-src/main.o: src/main.c
-	gcc $(CFLAGS) -c src/main.c -o src/main.o
+obj/main.o: src/main.c
+    mkdir -p obj
+    gcc $(CFLAGS) -c src/main.c -o obj/main.o
 
-src/date.o: src/date.c
-	gcc $(CFLAGS) -c src/date.c -o src/date.o
-
-clean:
-	rm -f src/*.o main
+obj/date.o: src/date.c
+    mkdir -p obj
+    gcc $(CFLAGS) -c src/date.c -o obj/date.o
