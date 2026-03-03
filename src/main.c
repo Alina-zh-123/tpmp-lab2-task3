@@ -2,21 +2,28 @@
 #include <stdlib.h>
 #include <string.h>
 #include "person.h" 
+#include "date.h"
 
 int cmp_students(const void *a, const void *b) {
-    const Person *x = (const Person*)a;
-    const Person *y = (const Person*)b;
+    const struct Person *x = (const struct Person*)a;
+    const struct Person *y = (const struct Person*)b;
     
-    int fac_cmp = strcmp(x->fac, y->fac);
-    if (fac_cmp != 0) return fac_cmp;
+    int result;
     
-    if (x->group != y->group) return x->group - y->group;
+    result = strcmp(x->fac, y->fac);
+    if (result != 0) return result;
     
-    return compare_dates(&x->date, &y->date);
+    result = x->group - y->group;
+    if (result != 0) return result;
+    
+    result = compare_dates(&x->date, &y->date);
+    if (result != 0) return result;
+    
+    return strcmp(x->name, y->name);
 }
 
 int main() {
-    Person vuz[10];
+    struct Person vuz[10];
     int count = 0;
     
     printf("Enter data (Name Faculty Group Day Month Year):\n");
@@ -28,7 +35,7 @@ int main() {
     }
     
     if (count > 0) {
-        qsort(vuz, count, sizeof(Person), cmp_students);
+        qsort(vuz, count, sizeof(struct Person), cmp_students);
     }
     
     for (int i = 0; i < count; i++) {
